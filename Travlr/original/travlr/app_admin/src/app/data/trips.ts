@@ -1,0 +1,34 @@
+import { Trip } from '../models/trip';
+
+export const trips: Trip[] = [
+    {
+        "code": "GALR210214",
+        "name": "Gala Reef",
+        "length" : "4 nights / 5 days",
+        "start" : "2021-02-14T08:00:00Z",
+        "resort": "Emerald Bay, 3 stars",
+        "perPerson" : "799.00",
+        "image": "reef1.jpg",
+        "description": "<p>Experience the vibrant underwater world with our guided snorkeling tours at Gala Reef. Perfect for beginners and seasoned snorkelers alike.</p>"
+    },
+    {
+        "code": "DAWR210315",
+        "name": "Dawson's Reef",
+        "length" : "4 nights / 5 days",
+        "start" : "2021-03-15T08:00:00Z",
+        "resort": "Blue Lagoon, 4 stars",
+        "perPerson" : "1199.00",
+        "image": "reef2.jpg",
+        "description": "<p>Dive into adventure with our scuba diving excursions at Dawson's Reef. Explore colorful coral formations and diverse marine life with certified instructors.</p>"
+    },
+    {
+        "code": "CLAR210621",
+        "name": "Claire's Reef",
+        "length" : "4 nights / 5 days",
+        "start" : "2021-06-21T08:00:00Z",
+        "resort": "Coral Sands, 5 stars",
+        "perPerson" : "1999.00",
+        "image": "reef3.jpg",
+        "description": "<p>Join us for an unforgettable snorkeling experience at Claire's Reef. Swim alongside tropical fish and marvel at the stunning coral gardens.</p>"
+    }
+];

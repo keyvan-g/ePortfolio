@@ -1,0 +1,25 @@
+<!-- Success message 
+<div class="alert alert-success" *ngIf="message && !error">
+    {{ message }}
+</div>-->
+
+<div *ngIf="isLoggedIn()" class="mb-3">
+    <button (click)="addTrip()" class="btn btn-info">Add Trip</button>
+</div>
+
+<!-- Error message --> 
+<div class="alert alert-danger" *ngIf="error">
+    {{ error }}
+</div>
+
+<!-- Trip cards -->
+<div class="row" *ngIf="trips && trips.length > 0">
+    <div *ngFor="let trip of trips" class="col-md-4">
+        <app-trip-card [trip]="trip" class="card-deck mt-2"></app-trip-card>
+    </div>
+</div>
+
+<!-- No trips message (when no error but also no data) -->
+<div class="alert alert-warning" *ngIf="!error && (!trips || trips.length === 0) && message">
+    No trips available to display.
+</div>
