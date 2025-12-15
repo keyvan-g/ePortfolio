@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Search Results - Travlr Getaways</title>
+	<link rel="stylesheet" href="/css/style.css" type="text/css">
+	<style>
+		.search-results-header {
+			background: #f8f9fa;
+			padding: 15px;
+			border-radius: 8px;
+			margin: 20px 0;
+			border-left: 4px solid #007bff;
+		}
+		.search-summary {
+			margin: 15px 0;
+			padding: 10px;
+			background: #e7f3ff;
+			border-radius: 4px;
+		}
+		.search-summary h4 {
+			margin-top: 0;
+			color: #007bff;
+		}
+		.search-criteria {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+			margin-top: 10px;
+		}
+		.criteria-tag {
+			background: #007bff;
+			color: white;
+			padding: 4px 8px;
+			border-radius: 12px;
+			font-size: 12px;
+		}
+		.trip-item {
+			border: 1px solid #ddd;
+			border-radius: 8px;
+			margin-bottom: 20px;
+			padding: 15px;
+			background: white;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		}
+		.trip-header {
+			display: flex;
+			justify-content: between;
+			align-items: center;
+			margin-bottom: 10px;
+		}
+		.trip-name {
+			font-size: 20px;
+			font-weight: bold;
+			color: #333;
+			margin: 0;
+		}
+		.trip-price {
+			font-size: 18px;
+			font-weight: bold;
+			color: #007bff;
+		}
+		.trip-details {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 15px;
+			margin: 10px 0;
+		}
+		.trip-info {
+			font-size: 14px;
+			color: #666;
+		}
+		.trip-info strong {
+			color: #333;
+		}
+		.trip-description {
+			margin-top: 10px;
+			line-height: 1.5;
+			color: #444;
+		}
+		.no-results {
+			text-align: center;
+			padding: 40px;
+			color: #666;
+		}
+		.search-actions {
+			text-align: center;
+			margin: 20px 0;
+		}
+		.btn {
+			background: #007bff;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			text-decoration: none;
+			display: inline-block;
+			margin: 0 5px;
+		}
+		.btn:hover {
+			background: #0056b3;
+		}
+		.btn-secondary {
+			background: #6c757d;
+		}
+		.btn-secondary:hover {
+			background: #545b62;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="background">
+		<div id="page">
+			{{> header }}
+			<div id="contents">
+				<div class="box">
+					<div>
+						<div class="body">
+							<div class="search-results-header">
+								<h1>Search Results</h1>
+								{{#if message}}
+								<p><strong>{{message}}</strong></p>
+								{{/if}}
+							</div>
+							
+							<!-- Search Summary -->
+							{{#if searchQuery}}
+							<div class="search-summary">
+								<h4>Search Criteria:</h4>
+								<div class="search-criteria">
+									{{#if searchQuery.minPrice}}
+									<span class="criteria-tag">Min Price: ${{searchQuery.minPrice}}</span>
+									{{/if}}
+									{{#if searchQuery.maxPrice}}
+									<span class="criteria-tag">Max Price: ${{searchQuery.maxPrice}}</span>
+									{{/if}}
+									{{#if searchQuery.name}}
+									<span class="criteria-tag">Name: "{{searchQuery.name}}"</span>
+									{{/if}}
+									{{#if searchQuery.resort}}
+									<span class="criteria-tag">Resort: "{{searchQuery.resort}}"</span>
+									{{/if}}
+									{{#if searchQuery.duration}}
+									<span class="criteria-tag">Duration: "{{searchQuery.duration}}"</span>
+									{{/if}}
+									{{#if searchQuery.description}}
+									<span class="criteria-tag">Keywords: "{{searchQuery.description}}"</span>
+									{{/if}}
+									{{#if searchQuery.startDate}}
+									<span class="criteria-tag">From: {{searchQuery.startDate}}</span>
+									{{/if}}
+									{{#if searchQuery.endDate}}
+									<span class="criteria-tag">Until: {{searchQuery.endDate}}</span>
+									{{/if}}
+								</div>
+							</div>
+							{{/if}}
+							
+							<!-- Search Actions -->
+							<div class="search-actions">
+								<a href="/travel/search" class="btn">New Search</a>
+								<a href="/travel" class="btn btn-secondary">View All Trips</a>
+							</div>
+							
+							<!-- Results -->
+							{{#if trips}}
+								{{#each trips}}
+								<div class="trip-item">
+									<div class="trip-header">
+										<h2 class="trip-name">{{this.name}}</h2>
+										<div class="trip-price">{{this.perPerson}}</div>
+									</div>
+									
+									<div class="trip-details">
+										<div class="trip-info">
+											<strong>Resort:</strong> {{this.resort}}
+										</div>
+										<div class="trip-info">
+											<strong>Duration:</strong> {{this.length}}
+										</div>
+										<div class="trip-info">
+											<strong>Trip Code:</strong> {{this.code}}
+										</div>
+										<div class="trip-info">
+											<strong>Departure:</strong> {{#if this.start}}{{formatDate this.start}}{{else}}TBD{{/if}}
+										</div>
+									</div>
+									
+									<div class="trip-description">
+										{{{this.description}}}
+									</div>
+									
+									{{#if this.image}}
+									<div style="text-align: center; margin-top: 15px;">
+										<a href="/api/trips/{{this.code}}">
+											<img src="/images/{{this.image}}" alt="{{this.name}}" style="max-width: 200px; border-radius: 4px;">
+										</a>
+									</div>
+									{{/if}}
+								</div>
+								{{/each}}
+							{{else}}
+								<div class="no-results">
+									<h3>No trips found</h3>
+									<p>Try adjusting your search criteria or browse all available trips.</p>
+								</div>
+							{{/if}}
+							
+							<!-- Search Actions Bottom -->
+							<div class="search-actions">
+								<a href="/travel/search" class="btn">Search Again</a>
+								<a href="/travel" class="btn btn-secondary">Browse All Trips</a>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{{> footer }}
+	</div>
+</body>
+
+</html>

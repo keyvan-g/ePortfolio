@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Buffet",
+    "description": "A wide variety of dishes served in a buffet style.",
+    "image": "buffet.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Seafoods",
+    "description": "Fresh seafood options including fish, shrimp, and more.",
+    "image": "seafoods.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Desserts",
+    "description": "Delicious desserts to finish your meal.",
+    "image": "desserts.jpg"
+  }
+]

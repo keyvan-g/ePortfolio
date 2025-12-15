@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Advanced Search - Travlr Getaways</title>
+	<link rel="stylesheet" href="/css/style.css" type="text/css">
+	<style>
+		.search-form {
+			background: #f9f9f9;
+			padding: 20px;
+			border-radius: 8px;
+			margin: 20px 0;
+		}
+		.search-row {
+			display: flex;
+			gap: 20px;
+			margin-bottom: 15px;
+			align-items: center;
+		}
+		.search-field {
+			flex: 1;
+		}
+		.search-field label {
+			display: block;
+			font-weight: bold;
+			margin-bottom: 5px;
+			color: #333;
+		}
+		.search-field input,
+		.search-field textarea {
+			width: 100%;
+			padding: 8px 12px;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			font-size: 14px;
+		}
+		.search-field textarea {
+			height: 80px;
+			resize: vertical;
+		}
+		.price-range {
+			display: flex;
+			gap: 10px;
+			align-items: center;
+		}
+		.price-range input {
+			width: 120px;
+		}
+		.search-buttons {
+			text-align: center;
+			margin-top: 20px;
+		}
+		.btn {
+			background: #007bff;
+			color: white;
+			padding: 12px 24px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 16px;
+			margin: 0 10px;
+			text-decoration: none;
+			display: inline-block;
+		}
+		.btn:hover {
+			background: #0056b3;
+		}
+		.btn-secondary {
+			background: #6c757d;
+		}
+		.btn-secondary:hover {
+			background: #545b62;
+		}
+		.search-tips {
+			background: #e7f3ff;
+			padding: 15px;
+			border-radius: 4px;
+			margin-top: 20px;
+			border-left: 4px solid #007bff;
+		}
+		.search-tips h4 {
+			margin-top: 0;
+			color: #007bff;
+		}
+		.search-tips ul {
+			margin: 10px 0 0 20px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="background">
+		<div id="page">
+			{{> header }}
+			<div id="contents">
+				<div class="box">
+					<div>
+						<div class="body">
+							<h1>Advanced Trip Search</h1>
+							<p>Find your perfect getaway using our advanced search filters. You can search by price range, 
+							   description keywords, duration, resort name, trip name, or travel dates.</p>
+							
+							<form class="search-form" action="/travel/search/results" method="GET">
+								
+								<!-- Price Range -->
+								<div class="search-row">
+									<div class="search-field">
+										<label for="minPrice">Price Range</label>
+										<div class="price-range">
+											<span>$</span>
+											<input type="number" id="minPrice" name="minPrice" placeholder="Min Price" min="0" step="100">
+											<span>to $</span>
+											<input type="number" id="maxPrice" name="maxPrice" placeholder="Max Price" min="0" step="100">
+										</div>
+									</div>
+								</div>
+								
+								<!-- Trip Name and Resort -->
+								<div class="search-row">
+									<div class="search-field">
+										<label for="name">Trip Name</label>
+										<input type="text" id="name" name="name" placeholder="e.g., Beach Paradise, Mountain Adventure">
+									</div>
+									<div class="search-field">
+										<label for="resort">Resort/Location</label>
+										<input type="text" id="resort" name="resort" placeholder="e.g., Hawaii, Cancun, Aspen">
+									</div>
+								</div>
+								
+								<!-- Duration -->
+								<div class="search-row">
+									<div class="search-field">
+										<label for="duration">Duration</label>
+										<input type="text" id="duration" name="duration" placeholder="e.g., 5 days, 1 week, 10 days">
+									</div>
+								</div>
+								
+								<!-- Date Range -->
+								<div class="search-row">
+									<div class="search-field">
+										<label for="startDate">Travel Date Range</label>
+										<div class="price-range">
+											<input type="date" id="startDate" name="startDate">
+											<span>to</span>
+											<input type="date" id="endDate" name="endDate">
+										</div>
+									</div>
+								</div>
+								
+								<!-- Description Keywords -->
+								<div class="search-row">
+									<div class="search-field">
+										<label for="description">Description Keywords</label>
+										<textarea id="description" name="description" 
+												  placeholder="Search trip descriptions for keywords like 'beach', 'adventure', 'luxury', 'family-friendly', etc."></textarea>
+									</div>
+								</div>
+								
+								<!-- Search Buttons -->
+								<div class="search-buttons">
+									<button type="submit" class="btn">Search Trips</button>
+									<button type="reset" class="btn btn-secondary">Clear Form</button>
+									<a href="/travel" class="btn btn-secondary">View All Trips</a>
+								</div>
+								
+							</form>
+							
+							<!-- Search Tips -->
+							<div class="search-tips">
+								<h4>Search Tips:</h4>
+								<ul>
+									<li><strong>Price:</strong> Enter minimum and/or maximum prices to find trips in your budget</li>
+									<li><strong>Keywords:</strong> Use descriptive words like "beach", "mountain", "luxury", "adventure"</li>
+									<li><strong>Duration:</strong> Search for "days", "weeks", or specific numbers like "7 days"</li>
+									<li><strong>Dates:</strong> Find trips within a specific date range</li>
+									<li><strong>Multiple filters:</strong> Combine different search criteria for more precise results</li>
+								</ul>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{{> footer }}
+	</div>
+</body>
+
+</html>

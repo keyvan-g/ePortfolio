@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var toggleBtn = document.getElementById("toggle-stack");
+        var stackEl = document.getElementById("stacktrace");
+        if (toggleBtn && stackEl) {
+            toggleBtn.addEventListener("click", function () {
+                if (stackEl.style.display === "none") {
+                    stackEl.style.display = "block";
+                    toggleBtn.textContent = "Hide stacktrace";
+                } else {
+                    stackEl.style.display = "none";
+                    toggleBtn.textContent = "Show stacktrace";
+                }
+            });
+        }
+    });
+</script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8d7da;
+            color: #721c24;
+            padding: 2em;
+        }
+
+        .error-container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 2em;
+        }
+
+        h1 {
+            color: #c82333;
+        }
+
+        .error-details {
+            margin-top: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="error-container">
+        <h1>Error</h1>
+        <p>{{message}}</p>
+        {{#if error}}
+        <div class="error-details">
+            <pre>{{error.status}}</pre>
+            <div id="toggle-stack" style="cursor: pointer; color: blue; text-decoration: underline; margin-top: 1em;">
+                Show stacktrace
+            </div>
+            <div id="stacktrace" style="display: none;">
+                <pre>{{error.stack}}</pre>
+            </div>
+        </div>
+        {{/if}}
+        <a href="/">Go back to Home</a>
+    </div>
+</body>
+
+</html>
